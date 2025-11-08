@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  docked-osc-router:
+    build: .
+    container_name: osc-router
+    stdin_open: true   
+    tty: true          
+    environment:
+      OSC_LISTEN_PORT: "1122"
+      OSC_TARGETS: "192.168.50.58:57110,192.168.50.58:57111"
+    ports:
+      - "1122:1122/udp"
+    volumes:
+      - nix-cache:/nix 
+
+volumes:
+  nix-cache:
+
